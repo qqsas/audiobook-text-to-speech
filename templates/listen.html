@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Preview: {{ filename }}</h1>
+
+        <div class="audio-section">
+            <audio controls>
+                <source src="{{ url_for('static', filename='audio/' + audio_file) }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <div class="text-preview">
+            <h2>Text Preview</h2>
+            <p>{{ text }}</p>
+        </div>
+
+        <a class="back-link" href="{{ url_for('upload_file') }}">Convert another ebook</a>
+    </div>
+</body>
+</html>

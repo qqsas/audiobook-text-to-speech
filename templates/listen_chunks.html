@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listen to Ebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Audio for: {{ filename }}</h1>
+
+        <div class="controls">
+            <label for="speedControl">Playback speed:</label>
+            <select id="speedControl" onchange="changeSpeed(this.value)">
+                <option value="1" selected>1x (Normal)</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+        </div>
+
+        <script>
+            function changeSpeed(rate) {
+                document.querySelectorAll('audio').forEach(function(audio) {
+                    audio.playbackRate = rate;
+                });
+            }
+        </script>
+
+        {% for audio in audio_files %}
+        <div class="audio-section">
+            <h3>Section {{ loop.index }}</h3>
+            <audio controls>
+                <source src="{{ url_for('static', filename='audio/' + audio) }}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <a class="download-link" href="{{ url_for('download', filename=audio) }}" download>⬇ Download</a>
+        </div>
+        {% endfor %}
+
+        <a class="back-link" href="{{ url_for('upload_file') }}">Upload another ebook</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+instance/
+.env
+uploads/
+*.wav
+*.mp3
+*.pdf
+*.epub
+*.txt
+static/audio/
+venv/
+.env
+.DS_Store
